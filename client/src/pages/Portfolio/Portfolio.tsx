@@ -102,11 +102,11 @@ const Portfolio: React.FC = () => {
                     ))}
                     </tbody>
                 </table>
-    )}
+)}
             <BuyAssetForm onSuccess={() => window.location.reload()} />
             <SellAssetForm holdings={holdings} onSuccess={fetchHoldings} />
         </div>
-    );
+);
 };
 
 export default Portfolio;

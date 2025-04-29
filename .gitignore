@@ -1,4 +1,16 @@
-node_modules
+# Node modules
+node_modules/
+# Build outputs
+dist/
+build/
+
+# Env files
 .env
-/dist
-/build
+
+# Logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Database files
+*.sql
