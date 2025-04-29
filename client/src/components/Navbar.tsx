@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import styles from './Navbar.module.css';
 
 const Navbar: React.FC = () => {
     const { token, user, logout } = useAuth();
@@ -12,73 +13,41 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '1rem 2rem',
-            backgroundColor: '#1f2937',
-            color: '#fff'
-        }}>
-            <div>
-                <Link to="/" style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}>
+        <nav className={styles.navbar}>
+            <div className={styles.left}>
+                <Link to="/" className={styles.link}>
                     Home
                 </Link>
                 {token && (
-                    <Link to="/portfolio" style={{ color: 'white', textDecoration: 'none' }}>
+                    <Link to="/portfolio" className={styles.link}>
                         Portfolio
                     </Link>
-            )}
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Link
-                    to="/contact"
-                    style={{
-                        color: 'white',
-                        textDecoration: 'none',
-                        marginRight: '1rem'
-                    }}
-                >
+                )}
+                <Link to="/contact" className={styles.link}>
                     Contact
                 </Link>
+            </div>
 
+            <div className={styles.right}>
                 {token ? (
                     <>
-                        <span style={{ marginRight: '1rem' }}>Hi, {user?.name}</span>
-                        <button
-                            onClick={handleLogout}
-                            style={{
-                                padding: '0.5rem 1rem',
-                                backgroundColor: '#e11d48',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer'
-                            }}
-                        >
+                        <span className={styles.username}>Hi, {user?.name}</span>
+                        <button onClick={handleLogout} className={styles.logoutBtn}>
                             Logout
                         </button>
                     </>
                 ) : (
                     <>
-                        <Link
-                            to="/login"
-                            style={{ color: 'white', textDecoration: 'none', marginRight: '1rem' }}
-                        >
+                        <Link to="/login" className={styles.link}>
                             Login
                         </Link>
-                        <Link
-                            to="/register"
-                            style={{ color: 'white', textDecoration: 'none' }}
-                        >
+                        <Link to="/register" className={styles.link}>
                             Register
                         </Link>
                     </>
                 )}
             </div>
-
         </nav>
     );
 };
-
 export default Navbar;

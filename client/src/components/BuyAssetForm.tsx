@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import styles from './BuyAssetForm.module.css';
 
 interface Asset {
     id: number;
@@ -51,26 +52,35 @@ const BuyAssetForm: React.FC<Props> = ({ onSuccess }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ marginTop: '1rem' }}>
-            <h3>Buy Asset</h3>
-            <select value={assetId} onChange={(e) => setAssetId(Number(e.target.value))} required>
-                <option value="">Select Asset</option>
-                {assets.map((asset) => (
-                    <option key={asset.id} value={asset.id}>
-                        {asset.name} ({asset.symbol})
-                    </option>
-                ))}
-            </select>
-            <input
-                type="number"
-                step="0.01"
-                placeholder="Quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(parseFloat(e.target.value))}
-                required
-            />
-            <button type="submit" style={{ marginLeft: '1rem' }}>Buy</button>
+        <form onSubmit={handleSubmit} className={styles.formContainer}>
+            <h3 className={styles.formTitle}>Buy Asset</h3>
+            <div className={styles.formRow}>
+                <select
+                    value={assetId}
+                    onChange={(e) => setAssetId(Number(e.target.value))}
+                    required
+                >
+                    <option value="">Select Asset</option>
+                    {assets.map((asset) => (
+                        <option key={asset.id} value={asset.id}>
+                            {asset.name} ({asset.symbol})
+                        </option>
+                    ))}
+                </select>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    placeholder="Quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(parseFloat(e.target.value))}
+                    required
+                />
+
+                <button type="submit" className={styles.buyBtn}>Buy</button>
+            </div>
         </form>
+
     );
 };
 
