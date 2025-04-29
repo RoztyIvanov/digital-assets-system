@@ -1,0 +1,24 @@
+.navbar {
+    background-color: #1f2937;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+}
